@@ -1,0 +1,460 @@
+{
+  "versions": {
+    "python": "3.9.6",
+    "node": "v26.12.1",
+    "npm": "11.20.0"
+  },
+  "code_inspection": {
+    "target": "matrix (around line 49)",
+    "file": "src/algorithms/image-processing/seam-carving/resizeImageWidth.js",
+    "public_inputs": [
+      {
+        "name": "w",
+        "type": "number",
+        "description": "Width (columns)"
+      },
+      {
+        "name": "h",
+        "type": "number",
+        "description": "Height (rows)"
+      },
+      {
+        "name": "filler",
+        "type": "?(number | SeamPixelMeta)",
+        "description": "Fill value"
+      }
+    ],
+    "return_value": "2D array (h rows x w columns) filled with specified filler value",
+    "mutation_behavior": "Pure, non-mutating. Allocates new outer Array(h) and distinct inner Array(w) per row.",
+    "external_dependencies": "None. Does not rely on time, randomness, network, UI, filesystem, or global state."
+  },
+  "install_command": "npm ci",
+  "install_exit_code": 0,
+  "focused_check": {
+    "command": "npm test -- --runInBand --runTestsByPath src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js --json --outputFile=work/R51-T015/focused-jest-results.json",
+    "exit_code": 0,
+    "test_count": {
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "pendingTests": 0,
+      "testSuites": 1
+    }
+  },
+  "mutation_check": {
+    "command": "npm test -- --runInBand --runTestsByPath src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js --json --outputFile=jest-results.json",
+    "detected": true,
+    "exit_code": 1,
+    "failed_tests": 2
+  },
+  "native_check": {
+    "command": "npm test -- --runInBand --json --outputFile=work/R51-T015/jest-results.json",
+    "exit_code": 0,
+    "total_tests": 588,
+    "passed_tests": 588,
+    "failed_tests": 0,
+    "pending_tests": 0,
+    "test_suites": 178
+  },
+  "cases": [
+    {
+      "fixture": "small rectangular matrix",
+      "run": "isolated_run_1",
+      "input": {
+        "w": 3,
+        "h": 2,
+        "filler": 5
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "actual": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "fixture": "small rectangular matrix",
+      "run": "isolated_run_2",
+      "input": {
+        "w": 3,
+        "h": 2,
+        "filler": 5
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "actual": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "fixture": "small rectangular matrix",
+      "run": "intervening_valid_input",
+      "input": {
+        "w": 4,
+        "h": 1,
+        "filler": 99
+      },
+      "expected": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ],
+      "actual": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ]
+    },
+    {
+      "fixture": "small rectangular matrix",
+      "run": "run_after_intervening_input",
+      "input": {
+        "w": 3,
+        "h": 2,
+        "filler": 5
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "actual": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "fixture": "small rectangular matrix",
+      "run": "run_after_prior_result_mutation",
+      "input": {
+        "w": 3,
+        "h": 2,
+        "filler": 5
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "actual": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "fixture": "1x1 matrix",
+      "run": "isolated_run_1",
+      "input": {
+        "w": 1,
+        "h": 1,
+        "filler": 42
+      },
+      "expected": [
+        [
+          42
+        ]
+      ],
+      "actual": [
+        [
+          42
+        ]
+      ]
+    },
+    {
+      "fixture": "1x1 matrix",
+      "run": "isolated_run_2",
+      "input": {
+        "w": 1,
+        "h": 1,
+        "filler": 42
+      },
+      "expected": [
+        [
+          42
+        ]
+      ],
+      "actual": [
+        [
+          42
+        ]
+      ]
+    },
+    {
+      "fixture": "1x1 matrix",
+      "run": "intervening_valid_input",
+      "input": {
+        "w": 4,
+        "h": 1,
+        "filler": 99
+      },
+      "expected": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ],
+      "actual": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ]
+    },
+    {
+      "fixture": "1x1 matrix",
+      "run": "run_after_intervening_input",
+      "input": {
+        "w": 1,
+        "h": 1,
+        "filler": 42
+      },
+      "expected": [
+        [
+          42
+        ]
+      ],
+      "actual": [
+        [
+          42
+        ]
+      ]
+    },
+    {
+      "fixture": "1x1 matrix",
+      "run": "run_after_prior_result_mutation",
+      "input": {
+        "w": 1,
+        "h": 1,
+        "filler": 42
+      },
+      "expected": [
+        [
+          42
+        ]
+      ],
+      "actual": [
+        [
+          42
+        ]
+      ]
+    },
+    {
+      "fixture": "zero-containing matrix",
+      "run": "isolated_run_1",
+      "input": {
+        "w": 2,
+        "h": 2,
+        "filler": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "fixture": "zero-containing matrix",
+      "run": "isolated_run_2",
+      "input": {
+        "w": 2,
+        "h": 2,
+        "filler": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "fixture": "zero-containing matrix",
+      "run": "intervening_valid_input",
+      "input": {
+        "w": 4,
+        "h": 1,
+        "filler": 99
+      },
+      "expected": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ],
+      "actual": [
+        [
+          99,
+          99,
+          99,
+          99
+        ]
+      ]
+    },
+    {
+      "fixture": "zero-containing matrix",
+      "run": "run_after_intervening_input",
+      "input": {
+        "w": 2,
+        "h": 2,
+        "filler": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "fixture": "zero-containing matrix",
+      "run": "run_after_prior_result_mutation",
+      "input": {
+        "w": 2,
+        "h": 2,
+        "filler": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    }
+  ]
+}

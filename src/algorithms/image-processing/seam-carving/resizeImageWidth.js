@@ -46,7 +46,7 @@ import { getPixel, setPixel } from '../utils/imageData';
  * @param {?(number | SeamPixelMeta)} filler
  * @returns {?(number | SeamPixelMeta)[][]}
  */
-const matrix = (w, h, filler) => {
+export const matrix = (w, h, filler) => {
   return new Array(h)
     .fill(null)
     .map(() => {

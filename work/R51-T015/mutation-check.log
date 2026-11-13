@@ -1,0 +1,53 @@
+
+> javascript-algorithms-and-data-structures@0.0.4 test
+> jest --runInBand --runTestsByPath src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js --json --outputFile=jest-results.json
+
+(node:64637) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js
+  ● resizeImageWidth › should perform content-aware image width reduction
+
+    RangeError: Invalid array length
+        at Array.push (<anonymous>)
+
+      178 |   let currentSeam = seamPixelsMap[lastMinY][lastMinX];
+      179 |   while (currentSeam) {
+    > 180 |     seam.push(currentSeam.coordinate);
+          |          ^
+      181 |     const prevMinCoordinates = currentSeam.previous;
+      182 |     if (!prevMinCoordinates) {
+      183 |       currentSeam = null;
+
+      at push (src/algorithms/image-processing/seam-carving/resizeImageWidth.js:180:10)
+      at findLowEnergySeam (src/algorithms/image-processing/seam-carving/resizeImageWidth.js:234:12)
+      at src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:68:25
+      at Generator.call (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:2:1)
+      at Generator._invoke [as next] (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:2:1)
+      at asyncGeneratorStep (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:2:1)
+      at asyncGeneratorStep (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:2:1)
+
+  ● matrix › is a deterministic pure function with repeated call and input isolation
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 5
+    Received: 777777
+
+      198 |         const rowCheck = matrix(input.w, input.h, input.filler);
+      199 |         rowCheck[0][0] = 777777;
+    > 200 |         expect(rowCheck[1][0]).toEqual(expected[1][0]);
+          |                                ^
+      201 |       }
+      202 |     });
+      203 |
+
+      at toEqual (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:200:32)
+          at Array.forEach (<anonymous>)
+      at Object.forEach (src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js:125:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        2.486 s
+Ran all test suites within paths "src/algorithms/image-processing/seam-carving/__tests__/resizeImageWidth.node.js".
+Test results written to: jest-results.json
